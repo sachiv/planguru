@@ -1,4 +1,12 @@
 @import "_ui/_all";
+.screen-center {
+  min-height: $screen-height;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
 .navbar {
   margin-bottom: 1em;
 }

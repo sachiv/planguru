@@ -2,15 +2,18 @@ import React from 'react';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
 import {
   increment,
   incrementAsync,
   decrement,
   decrementAsync
-} from '../../actions/counter';
+} from '../actions/counter';
+import FormSignIn from '../components/FormSignIn'
 
 const Home = props => (
   <div>
+    <FormSignIn />
     <h1>Home</h1>
     <p>Count: {props.count}</p>
 
