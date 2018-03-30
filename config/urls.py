@@ -17,6 +17,7 @@ urlpatterns = [
                   url(r'^accounts/', include('allauth.urls')),
 
                   # Your stuff: custom urls includes go here
+                  url(r'^api/v1/', include('planguru.api.urls', namespace='api')),
                   url(r'^', include('planguru.client.urls', namespace='client')),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

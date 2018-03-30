@@ -77,6 +77,7 @@ LOCAL_APPS = [
     'planguru.users.apps.UsersConfig',
     'planguru.events.apps.EventConfig',
     'planguru.client.apps.ClientConfig',
+    'planguru.api.apps.APIConfig',
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
