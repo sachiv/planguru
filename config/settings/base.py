@@ -70,6 +70,7 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
+    'rest_auth.registration',
     'import_export',
 ]
 LOCAL_APPS = [
