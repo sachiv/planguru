@@ -17,8 +17,8 @@ urlpatterns = [
                   url(r'^accounts/', include('allauth.urls')),
 
                   # Your stuff: custom urls includes go here
-                  url(r'^rest-auth/', include('rest_auth.urls')),
-                  url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+                  url(r'^api/v1/rest-auth/', include('rest_auth.urls')),
+                  url(r'^api/v1/rest-auth/registration/', include('rest_auth.registration.urls')),
                   url(r'^api/v1/', include('planguru.api.urls', namespace='api')),
                   url(r'^', include('planguru.client.urls', namespace='client')),
 

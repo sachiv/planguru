@@ -1,7 +1,7 @@
 import { EVENTS_LOAD } from './'
 import api from '../Api';
 
-export function eventsLoad(payload) {
+export function eventsLoad() {
     // make async call to api, handle promise, dispatch action when promise is resolved
     return function (dispatch) {
         return api.getEventList().then(payload => {

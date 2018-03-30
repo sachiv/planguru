@@ -3,7 +3,10 @@ import { Switch, Route } from 'react-router-dom';
 
 import Home from '../containers/Home';
 import About from '../containers/About';
+import SignIn from '../containers/SignIn';
 import Events from '../containers/Events';
+import Users from '../containers/Users';
+import PrivateRoute from '../components/PrivateRoute';
 
 const AppRouter = (props) => {
 
@@ -11,7 +14,9 @@ const AppRouter = (props) => {
         <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/about-us" component={About} />
-            <Route exact path="/events" component={Events} />
+            <Route exact path="/signin" component={SignIn} />
+            <PrivateRoute path='/events' component={Events} />
+            <PrivateRoute path='/users' component={Users} />
         </Switch>
     );
 }

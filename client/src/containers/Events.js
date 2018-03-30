@@ -16,7 +16,7 @@ class Events extends React.Component {
       <div>
         <h1>Events</h1>
         {this.props.events.map(event =>
-          <li key={event.id}>{new Date(event.start_datetime).toLocaleString()}</li>
+          <li key={event.id}>From: {new Date(event.start_datetime).toLocaleString()} - To: {new Date(event.end_datetime).toLocaleString()} {event.booked_by ? ', booked by ' + event.booked_by.name : ''}</li>
         )}
       </div>
     );
@@ -24,7 +24,7 @@ class Events extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  events: state.events.events,
+  events: state.events.events
 });
 
 const mapDispatchToProps = dispatch =>

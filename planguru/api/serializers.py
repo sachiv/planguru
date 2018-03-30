@@ -11,13 +11,15 @@ from planguru.events.models import Event
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ('id', 'first_name', 'last_name', 'username', 'email')
+        fields = ('id', 'name', 'username', 'email')
 
 
 # ----------------------------------------------------------------------------------------------------------------------
 # events
 # ----------------------------------------------------------------------------------------------------------------------
 class EventSerializer(serializers.ModelSerializer):
+    booked_by = UserSerializer()
+
     class Meta:
         model = Event
-        fields = ('id', 'start_datetime', 'end_datetime', 'created', 'modified')
+        fields = ('id', 'start_datetime', 'end_datetime', 'booked_by', 'created', 'modified')

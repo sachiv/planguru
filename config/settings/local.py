@@ -65,4 +65,8 @@ CELERY_ALWAYS_EAGER = True
 
 # React Local Settings
 # ------------------------------------------------------------------------------
-MIDDLEWARE += ['config.middleware.dev_cors_middleware', ]
+INSTALLED_APPS += ['corsheaders']
+MIDDLEWARE = ['corsheaders.middleware.CorsMiddleware', ] + MIDDLEWARE
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3002'
+)

@@ -1,5 +1,9 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import { authSignOut } from '../actions/auth'
 
 const Header = (props) => {
 
@@ -31,10 +35,24 @@ const Header = (props) => {
                     <NavLink exact to='/' className='navbar-item' activeClassName='is-active'>Home</NavLink>
                     <NavLink exact to='/about-us' className='navbar-item' activeClassName='is-active'>About</NavLink>
                     <NavLink exact to='/events' className='navbar-item' activeClassName='is-active'>Events</NavLink>
+                    <NavLink exact to='/users' className='navbar-item' activeClassName='is-active'>Users</NavLink>
+                    {props.authed ? <div className='navbar-item' onClick={props.authSignOut}>SignOut</div> : <NavLink exact to='/signin' className='navbar-item' activeClassName='is-active'>SignIn</NavLink>}
                 </div>
             </div>
         </nav>
     );
 }
 
-export default Header;
+const mapStateToProps = state => ({
+    authed: state.auth.authed
+});
+
+const mapDispatchToProps = dispatch =>
+    bindActionCreators(
+        {
+            authSignOut
+        },
+        dispatch
+    );
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

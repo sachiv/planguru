@@ -3,4 +3,10 @@ export const INCREMENT = 'counter/INCREMENT';
 export const DECREMENT_REQUESTED = 'counter/DECREMENT_REQUESTED';
 export const DECREMENT = 'counter/DECREMENT';
 
+export const AUTH_SIGNIN = 'auth/AUTH_SIGNIN';
+export const AUTH_SIGNOUT = 'auth/AUTH_SIGNOUT';
+export const AUTH_DETAILS = 'auth/AUTH_DETAILS';
+
 export const EVENTS_LOAD = 'events/EVENTS_LOAD';
+
+export const USERS_LOAD = 'users/USERS_LOAD';

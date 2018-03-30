@@ -1,21 +1,34 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import {
+    authSignIn
+} from '../actions/auth';
+
 
 class FormSignIn extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: '' };
+        this.state = { email: '', password: '' };
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({ value: event.target.value });
+    handleEmailChange(event) {
+        this.setState({ email: event.target.value });
+    }
+
+    handlePasswordChange(event) {
+        this.setState({ password: event.target.value });
     }
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
         event.preventDefault();
+
+        this.props.authSignIn(this.state.email, this.state.password);
     }
 
     render() {
@@ -24,21 +37,21 @@ class FormSignIn extends React.Component {
                 <div className="card">
                     <div className="card-content">
                         <div className="content">
-                            <p class="title is-4">Hello!</p>
-                            <p class="subtitle is-6">Login to your account.</p>
+                            <p className="title is-4">Hello!</p>
+                            <p className="subtitle is-6">SignIn to your account.</p>
                             <form onSubmit={this.handleSubmit}>
                                 <div className="field">
                                     <div className="control">
-                                        <input className="input" type="email" placeholder="Email Address*" value={this.state.value} onChange={this.handleChange} required />
+                                        <input className="input" type="email" placeholder="Email Address*" value={this.state.email} onChange={this.handleEmailChange} required />
                                     </div>
                                 </div>
                                 <div className="field">
                                     <div className="control">
-                                        <input className="input" type="password" placeholder="Password*" value={this.state.value} onChange={this.handleChange} required />
+                                        <input className="input" type="password" placeholder="Password*" value={this.state.password} onChange={this.handlePasswordChange} required />
                                     </div>
                                 </div>
                                 <div className="has-text-centered">
-                                    <input type="submit" value="Login" className='button is-link' />
+                                    <input type="submit" value="SignIn" className='button is-link' />
                                 </div>
                             </form>
                         </div>
@@ -49,4 +62,16 @@ class FormSignIn extends React.Component {
     }
 }
 
-export default FormSignIn;
+const mapStateToProps = state => ({
+    token: state.auth.token
+});
+
+const mapDispatchToProps = dispatch =>
+    bindActionCreators(
+        {
+            authSignIn
+        },
+        dispatch
+    );
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormSignIn);
