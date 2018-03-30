@@ -68,10 +68,14 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'import_export',
 ]
 LOCAL_APPS = [
+    'planguru.core.apps.CoreConfig',
     'planguru.users.apps.UsersConfig',
-    # Your stuff: custom apps go here
+    'planguru.events.apps.EventConfig',
     'planguru.client.apps.ClientConfig',
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
