@@ -1,3 +1,5 @@
+import utils from './Utils'
+
 class Api {
     static apiBaseURL() {
         return 'http://localhost:8000/api/v1/';
@@ -97,6 +99,34 @@ class Api {
         }).catch(error => {
             return error;
         });
+    }
+
+    static getUserEventList(userID, date = null) {
+        if (date) {
+            const request = new Request(`${this.apiBaseURL()}users/${userID}/events/${utils.formatDate(date)}/`, {
+                method: 'GET',
+                credentials: "same-origin",
+                headers: this.requestHeaders()
+            });
+
+            return fetch(request).then(response => {
+                return response.json();
+            }).catch(error => {
+                return error;
+            });
+        } else {
+            const request = new Request(`${this.apiBaseURL()}users/${userID}/events/`, {
+                method: 'GET',
+                credentials: "same-origin",
+                headers: this.requestHeaders()
+            });
+
+            return fetch(request).then(response => {
+                return response.json();
+            }).catch(error => {
+                return error;
+            });
+        }
     }
 }
 

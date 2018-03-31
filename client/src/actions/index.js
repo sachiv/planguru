@@ -10,3 +10,4 @@ export const AUTH_DETAILS = 'auth/AUTH_DETAILS';
 export const EVENTS_LOAD = 'events/EVENTS_LOAD';
 
 export const USERS_LOAD = 'users/USERS_LOAD';
+export const USER_EVENTS = 'users/USER_EVENTS';

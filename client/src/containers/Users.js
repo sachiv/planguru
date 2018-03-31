@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import {
   usersLoad
@@ -16,7 +17,11 @@ class Users extends React.Component {
       <div>
         <h1>Users</h1>
         {this.props.users.map(user =>
-          <li key={user.id}>{user.name}</li>
+          <li key={user.id}>
+            <Link to={'/users/' + user.id + '/events'}>
+              {user.name}
+            </Link>
+          </li>
         )}
       </div>
     );

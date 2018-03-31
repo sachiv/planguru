@@ -40,7 +40,22 @@ class EventViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        return Event.objects.filter(user=user, start_datetime__gte=timezone.now().date()).order_by('start_datetime')
+        return Event.objects.filter(user=user, date__gte=timezone.now().date()).order_by('date', 'time')
 
     def perform_create(self, serializer):
         serializer.save(booked_by=self.request.user)
+
+
+class UserEventList(generics.ListAPIView):
+    serializer_class = serializers.EventSerializer
+
+    def get_queryset(self):
+        """
+        :return: Return list
+        """
+        user_pk = self.kwargs.get('user_pk')
+        date = self.kwargs.get('date')
+        if user_pk and date:
+            return Event.objects.filter(user__pk=user_pk, date=date).order_by('time')
+        elif user_pk:
+            return Event.objects.filter(user__pk=user_pk, date__gte=timezone.now().date()).order_by('date', 'time')

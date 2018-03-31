@@ -1,4 +1,4 @@
-import { USERS_LOAD } from './'
+import { USERS_LOAD, USER_EVENTS } from './'
 import api from '../Api';
 
 export function usersLoad() {
@@ -12,4 +12,32 @@ export function usersLoad() {
             throw (error);
         });
     };
+}
+
+export function userEvents(userID, date = null) {
+    if (date) {
+        return function (dispatch) {
+            return api.getUserEventList(userID, date).then(payload => {
+                dispatch({
+                    type: USER_EVENTS,
+                    payload,
+                    userID
+                });
+            }).catch(error => {
+                throw (error);
+            });
+        };
+    } else {
+        return function (dispatch) {
+            return api.getUserEventList(userID).then(payload => {
+                dispatch({
+                    type: USER_EVENTS,
+                    payload,
+                    userID
+                });
+            }).catch(error => {
+                throw (error);
+            });
+        };
+    }
 }

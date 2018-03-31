@@ -22,4 +22,4 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ('id', 'start_datetime', 'end_datetime', 'booked_by', 'created', 'modified')
+        fields = ('id', 'date', 'time', 'booked_by', 'created', 'modified')

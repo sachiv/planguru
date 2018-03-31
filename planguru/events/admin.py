@@ -8,4 +8,4 @@ from .models import Event
 @admin.register(Event)
 class EventAdmin(ImportExportModelAdmin):
     model = Event
-    list_display = ['user', 'start_datetime', 'end_datetime', 'created', 'modified']
+    list_display = ['user', 'date', 'time', 'created', 'modified']
