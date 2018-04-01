@@ -1,4 +1,4 @@
-import { EVENTS_LOAD, EVENT_ADD } from './'
+import { EVENTS_LOAD, EVENT_ADD, USER_EVENT_ADD } from './'
 import api from '../Api';
 
 export function eventsLoad() {
@@ -21,6 +21,12 @@ export function eventAdd(userID, date, time) {
         return api.postEvent(userID, date, time).then(payload => {
             dispatch({
                 type: EVENT_ADD,
+                payload
+            });
+
+            dispatch({
+                type: USER_EVENT_ADD,
+                userID,
                 payload
             });
         }).catch(error => {

@@ -21,7 +21,17 @@ class UserList(generics.ListAPIView):
         return get_user_model().objects.all()
 
 
-class UserDetail(generics.ListAPIView):
+class UserDetail(generics.RetrieveUpdateAPIView):
+    serializer_class = serializers.UserSerializer
+
+    def get_queryset(self):
+        """
+        :return: Return list
+        """
+        return get_user_model().objects.all()
+
+
+class AuthenticatedUserDetail(generics.ListAPIView):
     serializer_class = serializers.UserSerializer
 
     def get_queryset(self):

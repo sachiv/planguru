@@ -36,7 +36,8 @@ const Header = (props) => {
                     <NavLink exact to='/about-us' className='navbar-item' activeClassName='is-active'>About</NavLink>
                     <NavLink exact to='/events' className='navbar-item' activeClassName='is-active'>Events</NavLink>
                     <NavLink exact to='/users' className='navbar-item' activeClassName='is-active'>Users</NavLink>
-                    {props.authed ? <div className='navbar-item' onClick={props.authSignOut}>SignOut</div> : <NavLink exact to='/signin' className='navbar-item' activeClassName='is-active'>SignIn</NavLink>}
+                    {props.authed ? <div className='navbar-item' onClick={props.authSignOut}>Sign Out</div> : <NavLink exact to='/sign-in' className='navbar-item' activeClassName='is-active'>Sign In</NavLink>}
+                    {props.authed ? '' : <NavLink exact to='/sign-up' className='navbar-item' activeClassName='is-active'>Sign Up</NavLink>}
                 </div>
             </div>
         </nav>

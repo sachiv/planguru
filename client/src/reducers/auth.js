@@ -1,4 +1,4 @@
-import { AUTH_SIGNIN, AUTH_SIGNOUT, AUTH_DETAILS } from '../actions/'
+import { AUTH_SIGNIN, AUTH_SIGNOUT, AUTH_DETAILS, AUTH_UPDATE_NAME } from '../actions/'
 
 const initialState = {
   authed: false,
@@ -39,6 +39,15 @@ export default (state = initialState, action) => {
         name: action.payload.name,
         username: action.payload.username,
         email: action.payload.email
+      }
+    case AUTH_UPDATE_NAME:
+      return {
+        authed: state.authed,
+        token: state.token,
+        id: state.id,
+        name: action.payload,
+        username: state.username,
+        email: state.email
       }
     default:
       return state;

@@ -45,6 +45,23 @@ class Api {
         });
     }
 
+    static postAuthSignUp(email, password) {
+        let formData = new FormData();
+        formData.append('username', email.split('@')[0]);
+        formData.append('email', email);
+        formData.append('password1', password);
+        formData.append('password2', password);
+
+        return fetch(`${this.apiBaseURL()}rest-auth/registration/`, {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            return response.json();
+        }).catch(error => {
+            return error;
+        });
+    }
+
     static postAuthSignOut() {
         const request = new Request(`${this.apiBaseURL()}rest-auth/logout/`, {
             method: 'POST',
@@ -64,6 +81,24 @@ class Api {
             method: 'GET',
             credentials: "same-origin",
             headers: this.requestHeaders()
+        });
+
+        return fetch(request).then(response => {
+            return response.json();
+        }).catch(error => {
+            return error;
+        });
+    }
+
+    static updateAuthName(userID, username, name) {
+        const request = new Request(`${this.apiBaseURL()}users/${userID}/`, {
+            method: 'PUT',
+            credentials: "same-origin",
+            headers: this.requestHeaders(),
+            body: JSON.stringify({
+                username: username,
+                name: name
+            })
         });
 
         return fetch(request).then(response => {
