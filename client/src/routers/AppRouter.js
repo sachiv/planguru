@@ -2,7 +2,6 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Home from '../containers/Home';
-import About from '../containers/About';
 import SignIn from '../containers/SignIn';
 import SignUp from '../containers/SignUp';
 import Events from '../containers/Events';
@@ -15,7 +14,6 @@ const AppRouter = (props) => {
     return (
         <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/about-us" component={About} />
             <Route exact path="/sign-in" component={SignIn} />
             <Route exact path="/sign-up" component={SignUp} />
             <PrivateRoute path='/events' component={Events} />

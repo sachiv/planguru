@@ -8,7 +8,7 @@ function signIn(dispatch, payload, name = null) {
             type: AUTH_SIGNIN,
             payload
         });
-        dispatch(push('/users'));
+        dispatch(push('/events'));
         api.getAuthDetails().then(payload => {
             dispatch({
                 type: AUTH_DETAILS,

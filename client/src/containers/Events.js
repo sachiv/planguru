@@ -26,7 +26,16 @@ class Events extends React.Component {
       if (groupedEvents.hasOwnProperty(k)) {
         html.push(<h2 className='is-size-3' key={'date_' + k}>{new Date(k).toDateString()}</h2>);
         for (let e of groupedEvents[k]) {
-          html.push(<p key={'event_' + e.id}>{new Date(e.date + 'T' + e.time).toLocaleTimeString('en-US')}, booked by {e.booked_by ? e.booked_by.name : ''}</p>)
+          html.push(
+            <div className='columns' key={'event_' + e.id}>
+              <div className="column is-narrow has-text-grey">
+                {new Date(e.date + 'T' + e.time).toLocaleTimeString('en-US')}
+              </div>
+              <div className="column">
+                Booked by {e.booked_by ? e.booked_by.name : 'Anonymous User'}
+              </div>
+            </div>
+          )
         }
       }
     }
@@ -35,9 +44,14 @@ class Events extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1 className='is-size-1'>{this.props.name}</h1>
-        {this.eventsList()}
+      <div className='container'>
+        <div className="columns">
+          <div className="column">
+            <h1 className='is-size-1'>{this.props.name}</h1>
+            <p className='is-size-4 has-text-grey'>Reservations</p>
+            {this.eventsList()}
+          </div>
+        </div>
       </div>
     );
   };

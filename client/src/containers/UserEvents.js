@@ -53,16 +53,20 @@ class UserEvents extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1 className='is-size-1'>{this.state.user.name}</h1>
-        <div className="has-text-centered">
-          <button className="button is-link" onClick={this.prevDay} disabled={(this.state.date > new Date()) ? '' : 'disabled'}>&lt;</button>
-          &nbsp;<span className='is-size-4'>{this.state.date.toDateString()}</span>&nbsp;
+      <div className='container has-text-centered'>
+        <div className="columns">
+          <div className="column">
+            <h1 className='is-size-1'>{this.state.user.name}</h1>
+            <div className="has-text-centered">
+              <button className="button is-link" onClick={this.prevDay} disabled={(this.state.date > new Date()) ? '' : 'disabled'}>&lt;</button>
+              &nbsp;<span className='is-size-4'>{this.state.date.toDateString()}</span>&nbsp;
           <button className="button is-link" onClick={this.nextDay}>&gt;</button>
-        </div>
-        <div className="columns is-centered">
-          <div className="column is-half is-narrow">
-            <TimeSlots events={this.events()} date={this.state.date} userID={this.state.user.id} />
+            </div>
+            <div className="columns is-centered">
+              <div className="column is-half is-narrow">
+                <TimeSlots events={this.events()} date={this.state.date} userID={this.state.user.id} />
+              </div>
+            </div>
           </div>
         </div>
       </div>

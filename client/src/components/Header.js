@@ -32,10 +32,8 @@ const Header = (props) => {
             <div id="navbar" className="navbar-menu">
                 <div className="navbar-start"></div>
                 <div className="navbar-end">
-                    <NavLink exact to='/' className='navbar-item' activeClassName='is-active'>Home</NavLink>
-                    <NavLink exact to='/about-us' className='navbar-item' activeClassName='is-active'>About</NavLink>
-                    <NavLink exact to='/events' className='navbar-item' activeClassName='is-active'>Events</NavLink>
-                    <NavLink exact to='/users' className='navbar-item' activeClassName='is-active'>Users</NavLink>
+                    {props.authed ? <NavLink exact to='/events' className='navbar-item' activeClassName='is-active'>Events</NavLink> : ''}
+                    {props.authed ? <NavLink exact to='/users' className='navbar-item' activeClassName='is-active'>Users</NavLink> : ''}
                     {props.authed ? <div className='navbar-item' onClick={props.authSignOut}>Sign Out</div> : <NavLink exact to='/sign-in' className='navbar-item' activeClassName='is-active'>Sign In</NavLink>}
                     {props.authed ? '' : <NavLink exact to='/sign-up' className='navbar-item' activeClassName='is-active'>Sign Up</NavLink>}
                 </div>
