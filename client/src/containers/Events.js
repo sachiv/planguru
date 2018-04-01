@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import utils from '../Utils';
 
 import {
   eventsLoad
@@ -11,13 +12,33 @@ class Events extends React.Component {
     this.props.eventsLoad()
   }
 
+  eventsList() {
+    let html = [], groupedEvents = {};
+    // Grouping events according to date
+    for (let e of this.props.events) {
+      if (!groupedEvents.hasOwnProperty(e.date)) {
+        groupedEvents[e.date] = [];
+      }
+      groupedEvents[e.date].push(e);
+    }
+
+    //Creating html
+    for (let k in groupedEvents) {
+      if (groupedEvents.hasOwnProperty(k)) {
+        html.push(<h2 className='is-size-3' key={'date_' + k}>{new Date(k).toDateString()}</h2>);
+        for (let e of groupedEvents[k]) {
+          html.push(<p key={'event_' + e.id}>{new Date(e.date + 'T' + e.time).toLocaleTimeString('en-US')}, booked by {e.booked_by ? e.booked_by.name : ''}</p>)
+        }
+      }
+    }
+    return html
+  }
+
   render() {
     return (
       <div>
-        <h1>Events</h1>
-        {this.props.events.map(event =>
-          <li key={event.id}>{new Date(event.date + "T" + event.time).toLocaleString()} {event.booked_by ? ', booked by ' + event.booked_by.name : ''}</li>
-        )}
+        <h1 className='is-size-1'>Events</h1>
+        {this.eventsList()}
       </div>
     );
   };
