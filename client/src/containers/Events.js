@@ -1,7 +1,6 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import utils from '../Utils';
 
 import {
   eventsLoad
@@ -37,7 +36,7 @@ class Events extends React.Component {
   render() {
     return (
       <div>
-        <h1 className='is-size-1'>Events</h1>
+        <h1 className='is-size-1'>{this.props.name}</h1>
         {this.eventsList()}
       </div>
     );
@@ -45,6 +44,7 @@ class Events extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  name: state.auth.name,
   events: state.events.events
 });
 

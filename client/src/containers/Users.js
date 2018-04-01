@@ -15,14 +15,16 @@ class Users extends React.Component {
   render() {
     return (
       <div>
-        <h1>Users</h1>
-        {this.props.users.map(user =>
-          <li key={user.id}>
-            <Link to={'/users/' + user.id + '/events'}>
-              {user.name}
-            </Link>
-          </li>
-        )}
+        <h1 className='is-size-1'>Users</h1>
+        <ul>
+          {this.props.users.map(user =>
+            <li key={user.id}>
+              <Link to={'/users/' + user.id + '/events'}>
+                {user.name}
+              </Link>
+            </li>
+          )}
+        </ul>
       </div>
     );
   };

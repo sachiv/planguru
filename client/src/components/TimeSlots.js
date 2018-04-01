@@ -27,11 +27,11 @@ class TimeSlots extends React.Component {
     }
 
     handleSlotBtnClick(slot) {
-        setTimeout(() => { this.setState({ selectedSlot: slot }) }, 100);
+        setTimeout(() => { this.setState({ selectedSlot: slot }) }, 200);
     }
 
     handleSlotBtnBlur(e) {
-        setTimeout(() => { this.setState({ selectedSlot: null }) }, 50);
+        setTimeout(() => { this.setState({ selectedSlot: null }) }, 100);
     }
 
     handleReserveBtnClick() {
