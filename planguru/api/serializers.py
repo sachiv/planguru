@@ -18,7 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
 # events
 # ----------------------------------------------------------------------------------------------------------------------
 class EventSerializer(serializers.ModelSerializer):
-    booked_by = UserSerializer()
+    booked_by = UserSerializer(read_only=True)
 
     class Meta:
         model = Event

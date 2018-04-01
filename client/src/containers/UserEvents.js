@@ -56,13 +56,13 @@ class UserEvents extends React.Component {
       <div>
         <h1>{this.state.user.name}</h1>
         <div className="has-text-centered">
-          <button className="button is-link" onClick={this.prevDay}>prev</button>
+          <button className="button is-link" onClick={this.prevDay} disabled={(this.state.date > new Date()) ? '' : 'disabled'}>prev</button>
           <span>{this.state.date.toDateString()}</span>
           <button className="button is-link" onClick={this.nextDay}>next</button>
         </div>
         <div className="columns is-centered">
           <div className="column is-half is-narrow">
-            <TimeSlots events={this.events()} />
+            <TimeSlots events={this.events()} date={this.state.date} userID={this.state.user.id} />
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { AUTH_SIGNIN, AUTH_SIGNOUT, AUTH_DETAILS } from './'
 import api from '../Api';
+import { push } from 'react-router-redux';
 
 export function authSignIn(email, password) {
     return function (dispatch) {
@@ -9,6 +10,7 @@ export function authSignIn(email, password) {
                     type: AUTH_SIGNIN,
                     payload
                 });
+                dispatch(push('/users'));
                 api.getAuthDetails().then(payload => {
                     dispatch({
                         type: AUTH_DETAILS,

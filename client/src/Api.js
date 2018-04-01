@@ -128,6 +128,24 @@ class Api {
             });
         }
     }
+
+    static postEvent(userID, date, hr) {
+        const request = new Request(`${this.apiBaseURL()}users/${userID}/events/`, {
+            method: 'POST',
+            credentials: "same-origin",
+            headers: this.requestHeaders(),
+            body: JSON.stringify({
+                "date": utils.formatDate(date),
+                "time": utils.formatTime({ hr })
+            })
+        });
+
+        return fetch(request).then(response => {
+            return response.json();
+        }).catch(error => {
+            return error;
+        });
+    }
 }
 
 export default Api;

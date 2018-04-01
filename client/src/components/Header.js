@@ -17,7 +17,7 @@ const Header = (props) => {
     }
 
     return (
-        <nav className="navbar is-primary">
+        <nav className="navbar is-link is-fixed-top">
             <div className="navbar-brand">
                 <Link className="navbar-item" to='/'>
                     PlanGuru

@@ -1,4 +1,4 @@
-import { EVENTS_LOAD } from '../actions/'
+import { EVENTS_LOAD, EVENT_ADD } from '../actions/'
 
 const initialState = {
   events: []
@@ -9,6 +9,10 @@ export default (state = initialState, action) => {
     case EVENTS_LOAD:
       return {
         events: action.payload
+      }
+    case EVENT_ADD:
+      return {
+        events: [...state.events, action.payload]
       }
     default:
       return state;
