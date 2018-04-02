@@ -256,6 +256,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_ADAPTER = 'planguru.users.adapters.AccountAdapter'
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 SOCIALACCOUNT_ADAPTER = 'planguru.users.adapters.SocialAccountAdapter'
+# https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_USERNAME_REQUIRED = False
 
 # Your stuff...
 # ------------------------------------------------------------------------------
@@ -266,6 +268,10 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication'
     ],
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'planguru.api.serializers.RegisterSerializer',
 }
 
 # React

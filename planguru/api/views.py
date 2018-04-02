@@ -45,18 +45,7 @@ class AuthenticatedUserDetail(generics.ListAPIView):
 # ----------------------------------------------------------------------------------------------------------------------
 # events
 # ----------------------------------------------------------------------------------------------------------------------
-class EventViewSet(viewsets.ModelViewSet):
-    serializer_class = serializers.EventSerializer
-
-    def get_queryset(self):
-        user = self.request.user
-        return Event.objects.filter(user=user, date__gte=timezone.now().date()).order_by('date', 'time')
-
-    def perform_create(self, serializer):
-        serializer.save(booked_by=self.request.user)
-
-
-class UserEventList(generics.ListCreateAPIView):
+class EventList(generics.ListCreateAPIView):
     serializer_class = serializers.EventSerializer
 
     def get_queryset(self):
@@ -69,6 +58,9 @@ class UserEventList(generics.ListCreateAPIView):
             return Event.objects.filter(user__pk=user_pk, date=date).order_by('time')
         elif user_pk:
             return Event.objects.filter(user__pk=user_pk, date__gte=timezone.now().date()).order_by('date', 'time')
+        else:
+            user = self.request.user
+            return Event.objects.filter(user=user).order_by('date', 'time')
 
     def perform_create(self, serializer):
         user_pk = self.kwargs.get('user_pk')

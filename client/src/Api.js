@@ -45,12 +45,11 @@ class Api {
         });
     }
 
-    static postAuthSignUp(email, password) {
+    static postAuthSignUp(name, email, password) {
         let formData = new FormData();
-        formData.append('username', email.split('@')[0]);
+        formData.append('name', name);
         formData.append('email', email);
         formData.append('password1', password);
-        formData.append('password2', password);
 
         return fetch(`${this.apiBaseURL()}rest-auth/registration/`, {
             method: 'POST',
@@ -77,28 +76,10 @@ class Api {
     }
 
     static getAuthDetails() {
-        const request = new Request(`${this.apiBaseURL()}user/`, {
+        const request = new Request(`${this.apiBaseURL()}users/authenticated/`, {
             method: 'GET',
             credentials: "same-origin",
             headers: this.requestHeaders()
-        });
-
-        return fetch(request).then(response => {
-            return response.json();
-        }).catch(error => {
-            return error;
-        });
-    }
-
-    static updateAuthName(userID, username, name) {
-        const request = new Request(`${this.apiBaseURL()}users/${userID}/`, {
-            method: 'PUT',
-            credentials: "same-origin",
-            headers: this.requestHeaders(),
-            body: JSON.stringify({
-                username: username,
-                name: name
-            })
         });
 
         return fetch(request).then(response => {
@@ -138,7 +119,7 @@ class Api {
 
     static getUserEventList(userID, date = null) {
         if (date) {
-            const request = new Request(`${this.apiBaseURL()}users/${userID}/events/${utils.formatDate(date)}/`, {
+            const request = new Request(`${this.apiBaseURL()}events/${userID}/${utils.formatDate(date)}/`, {
                 method: 'GET',
                 credentials: "same-origin",
                 headers: this.requestHeaders()
@@ -165,7 +146,7 @@ class Api {
     }
 
     static postEvent(userID, date, hr) {
-        const request = new Request(`${this.apiBaseURL()}users/${userID}/events/`, {
+        const request = new Request(`${this.apiBaseURL()}events/${userID}/`, {
             method: 'POST',
             credentials: "same-origin",
             headers: this.requestHeaders(),

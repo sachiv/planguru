@@ -1,8 +1,8 @@
-import { AUTH_SIGNIN, AUTH_SIGNOUT, AUTH_DETAILS, AUTH_UPDATE_NAME } from './'
+import { AUTH_SIGNIN, AUTH_SIGNOUT, AUTH_DETAILS } from './'
 import api from '../Api';
 import { push } from 'react-router-redux';
 
-function signIn(dispatch, payload, name = null) {
+function signIn(dispatch, payload) {
     if (payload.hasOwnProperty('key')) {
         dispatch({
             type: AUTH_SIGNIN,
@@ -14,17 +14,6 @@ function signIn(dispatch, payload, name = null) {
                 type: AUTH_DETAILS,
                 payload: payload[0]
             });
-            // Update name if given
-            if (name) {
-                api.updateAuthName(payload[0].id, payload[0].username, name).then(payload => {
-                    dispatch({
-                        type: AUTH_UPDATE_NAME,
-                        payload: name
-                    });
-                }).catch(error => {
-                    return error;
-                });
-            }
         });
     } else {
         throw (payload);
@@ -43,8 +32,8 @@ export function authSignIn(email, password) {
 
 export function authSignUp(name, email, password) {
     return function (dispatch) {
-        return api.postAuthSignUp(email, password).then(payload => {
-            signIn(dispatch, payload, name);
+        return api.postAuthSignUp(name, email, password).then(payload => {
+            signIn(dispatch, payload);
         }).catch(error => {
             throw (error);
         });

@@ -1,7 +1,6 @@
 export const AUTH_SIGNIN = 'auth/AUTH_SIGNIN';
 export const AUTH_SIGNOUT = 'auth/AUTH_SIGNOUT';
 export const AUTH_DETAILS = 'auth/AUTH_DETAILS';
-export const AUTH_UPDATE_NAME = 'auth/AUTH_UPDATE_NAME';
 
 export const EVENTS_LOAD = 'events/EVENTS_LOAD';
 export const EVENT_ADD = 'events/EVENT_ADD';
