@@ -26,8 +26,10 @@ class TimeSlots extends React.Component {
         return timeSlots;
     }
 
-    handleSlotBtnClick(slot) {
-        setTimeout(() => { this.setState({ selectedSlot: slot }) }, 200);
+    handleSlotBtnClick(slot, isBooked = false) {
+        if (!isBooked) {
+            setTimeout(() => { this.setState({ selectedSlot: slot }) }, 200);
+        }
     }
 
     handleSlotBtnBlur(e) {
@@ -56,7 +58,7 @@ class TimeSlots extends React.Component {
 
                         return (
                             <div className='timeSlotBtn' key={slot}>
-                                <button onBlur={(e) => { this.handleSlotBtnBlur(e) }} onClick={() => { isBooked ? null : this.handleSlotBtnClick(slot); }} className={"button " + (isBookedByAuthedUser ? 'is-success' : 'is-link is-outlined')} disabled={(isBooked && !isBookedByAuthedUser) ? 'disabled' : ''}>
+                                <button onBlur={(e) => { this.handleSlotBtnBlur(e) }} onClick={() => this.handleSlotBtnClick(slot, isBooked)} className={"button " + (isBookedByAuthedUser ? 'is-success' : 'is-link is-outlined')} disabled={(isBooked && !isBookedByAuthedUser) ? 'disabled' : ''}>
                                     {utils.formatTime({ hr: slot, format: 'HH:MM' })}
                                 </button>
                             </div>

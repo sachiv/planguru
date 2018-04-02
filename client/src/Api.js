@@ -162,6 +162,20 @@ class Api {
             return error;
         });
     }
+
+    static deleteEvent(id) {
+        const request = new Request(`${this.apiBaseURL()}events/${id}/detail/`, {
+            method: 'DELETE',
+            credentials: "same-origin",
+            headers: this.requestHeaders()
+        });
+
+        return fetch(request).then(response => {
+            return response.json();
+        }).catch(error => {
+            return error;
+        });
+    }
 }
 
 export default Api;

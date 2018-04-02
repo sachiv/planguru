@@ -1,5 +1,6 @@
 from django.utils import timezone
 from django.contrib.auth import get_user_model
+from django.db.models import Q
 
 from rest_framework import viewsets, generics
 
@@ -56,13 +57,19 @@ class EventList(generics.ListCreateAPIView):
         date = self.kwargs.get('date')
         if user_pk and date:
             return Event.objects.filter(user__pk=user_pk, date=date).order_by('time')
-        elif user_pk:
-            return Event.objects.filter(user__pk=user_pk, date__gte=timezone.now().date()).order_by('date', 'time')
         else:
             user = self.request.user
-            return Event.objects.filter(user=user).order_by('date', 'time')
+            return Event.objects.filter(Q(user=user) | Q(booked_by=user)).order_by('date', 'time')
 
     def perform_create(self, serializer):
         user_pk = self.kwargs.get('user_pk')
         user = get_user_model().objects.get(pk=user_pk)
         serializer.save(user=user, booked_by=self.request.user)
+
+
+class EventDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = serializers.EventSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return Event.objects.filter(Q(user=user) | Q(booked_by=user))

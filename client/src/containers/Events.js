@@ -3,7 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import {
-  eventsLoad
+  eventsLoad,
+  eventRemove
 } from '../actions/events';
 
 class Events extends React.Component {
@@ -33,6 +34,11 @@ class Events extends React.Component {
               </div>
               <div className="column">
                 Booked by {e.booked_by ? e.booked_by.name : 'Anonymous User'}
+              </div>
+              <div className="column has-text-danger">
+                <div className="button is-danger is-outlined" onClick={() => { this.props.eventRemove(e.id) }}>
+                  Delete
+                </div>
               </div>
             </div>
           )
@@ -65,7 +71,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      eventsLoad
+      eventsLoad,
+      eventRemove
     },
     dispatch
   );
